@@ -4,7 +4,7 @@ const GlobalContext = createContext()
 
 const GlobalProvider = ({ children }) => {
 
-  const apiKey = 'b6f58daad080043998101a992ca91623'
+  const apiKey = process.env.REACT_APP_API_KEY
 
 
 
