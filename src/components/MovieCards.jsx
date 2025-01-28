@@ -1,7 +1,9 @@
 
-const MovieCards = () => {
+const MovieCards = ({ movie }) => {
   return (
-    <div>MovieCards</div>
+    <div className="container my-5">
+      <ul></ul>
+    </div>
   )
 }
 
