@@ -10,16 +10,21 @@ const GlobalProvider = ({ children }) => {
 
   const apiKey = import.meta.env.VITE_API_KEY
   const baseApiUrl = 'https://api.themoviedb.org/3/search/multi'
-  const [searchData, setSearchData] = useState([])
+
+  const [searchResults, setSearchResults] = useState([])
+  const [searchData, setSearchData] = useState('')
 
 
+  const handlerSearch = (e) => {
+    setSearchData(e.target.value)
+  }
 
 
   const fetchMovies = () => {
-    axios.get(`${baseApiUrl}?api_key=${apiKey}&query=matrix`)
+    axios.get(`${baseApiUrl}?api_key=${apiKey}&query=${searchData}`)
       .then(res => {
         console.log(res.data);
-        setSearchData(res.data.results)
+        setSearchResults(res.data.results)
       })
   }
 
@@ -29,7 +34,7 @@ const GlobalProvider = ({ children }) => {
 
 
   return (
-    <GlobalContext.Provider value={{ searchData, fetchMovies }} >
+    <GlobalContext.Provider value={{ searchData, handlerSearch, searchResults, fetchMovies }} >
       {children}
     </GlobalContext.Provider >
   )
