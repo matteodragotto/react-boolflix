@@ -1,7 +1,11 @@
-
+import { useGlobalContext } from "../context/GlobalContext"
 const MovieCards = ({ media }) => {
 
+  const { ratingStars } = useGlobalContext()
+
   const isNameIdentical = media.name === media.original_name
+  const mediaRating = Math.floor(media.vote_average / 2)
+
 
   return (
     <div className="col-4 p-3">
@@ -15,7 +19,7 @@ const MovieCards = ({ media }) => {
             Titolo originale: {media.original_title}
           </p>
           <p className="card-text">Lingua: {media.original_language}</p>
-          <p className="card-text">Rating: {media.vote_average}</p>
+          <p className="card-text">Rating: {ratingStars(mediaRating)}</p>
         </div>
       </div>
     </div>
