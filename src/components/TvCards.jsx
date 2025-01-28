@@ -1,5 +1,11 @@
 
 const MovieCards = ({ media }) => {
+
+  const isNameIdentical = media.name === media.original_name
+
+
+
+
   return (
     <div className="col-4 p-3">
       <div className="card">
@@ -8,11 +14,11 @@ const MovieCards = ({ media }) => {
           <h5 className="card-text">
             Titolo: {media.name}
           </h5>
-          <p className="card-text">
+          <p className={`card-text ${isNameIdentical ? 'd-none' : ''}`}>
             Titolo originale: {media.original_name}
           </p>
-          <p>Lingua: {media.original_language}</p>
-          <p>Rating: {media.vote_average}</p>
+          <p className="card-text">Lingua: {media.original_language}</p>
+          <p className="card-text">Rating: {media.vote_average}</p>
         </div>
       </div>
     </div>
