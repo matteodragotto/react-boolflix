@@ -3,7 +3,7 @@ const MovieCards = ({ media }) => {
   return (
     <div className="col-4 p-3">
       <div className="card">
-        <img className="img-fluid" src='' alt='' />
+        <img className="img-fluid" src={`https://image.tmdb.org/t/p/w342${media.poster_path}`} alt={media.title} />
         <div className="card-body">
           <h5 className="card-text">
             Titolo: {media.title}
