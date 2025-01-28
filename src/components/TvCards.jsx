@@ -1,15 +1,12 @@
 import { useGlobalContext } from "../context/GlobalContext"
+import { useEffect } from "react"
 
 const MovieCards = ({ media }) => {
 
-  const { ratingStars } = useGlobalContext()
-
+  const { ratingStars, fetchCountry, originCountry, searchData } = useGlobalContext()
 
   const isNameIdentical = media.name === media.original_name
   const mediaRating = Math.floor(media.vote_average / 2)
-
-
-
 
   return (
     <div className="col-4 p-3">
@@ -24,6 +21,7 @@ const MovieCards = ({ media }) => {
           </p>
           <p className="card-text">Lingua: {media.original_language}</p>
           <p className="card-text">Rating: {ratingStars(mediaRating)}</p>
+          <p className="card-text">Overview: {media.overview}</p>
         </div>
       </div>
     </div>
