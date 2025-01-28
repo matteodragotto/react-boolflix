@@ -1,5 +1,5 @@
 import { useGlobalContext } from "../context/GlobalContext"
-import MovieCards from "./MediaCards"
+import MovieCards from "./MovieCards"
 
 
 

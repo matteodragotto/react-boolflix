@@ -1,5 +1,5 @@
 import { useGlobalContext } from "../context/GlobalContext"
-import MovieCards from "./MediaCards"
+import TvCards from "./TvCards"
 
 
 
@@ -7,7 +7,7 @@ const MovieLists = () => {
 
   const { searchResults } = useGlobalContext()
 
-  const mediaType = searchResults.map(media => media.media_type === 'tv' ? <MovieCards key={media.id} media={media} /> : null)
+  const mediaType = searchResults.map(media => media.media_type === 'tv' ? <TvCards key={media.id} media={media} /> : null)
 
   return (
     <>
