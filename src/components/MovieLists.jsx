@@ -7,6 +7,9 @@ const MovieLists = () => {
 
   const { searchData, fetchMovies } = useGlobalContext()
 
+  useEffect(() => {
+    fetchMovies()
+  }, [])
 
   return (
     <>

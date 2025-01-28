@@ -9,14 +9,14 @@ const GlobalContext = createContext()
 const GlobalProvider = ({ children }) => {
 
   const apiKey = import.meta.env.VITE_API_KEY
-  const baseApiUrl = 'Https://api.themoviedb.org/3/search/multi'
+  const baseApiUrl = 'https://api.themoviedb.org/3/search/multi'
   const [searchData, setSearchData] = useState([])
 
 
 
 
   const fetchMovies = () => {
-    axios.get(`${baseApiUrl}?api_key=${apiKey}`)
+    axios.get(`${baseApiUrl}?api_key=${apiKey}&query=matrix`)
       .then(res => {
         console.log(res.data);
         setSearchData(res.data.results)
