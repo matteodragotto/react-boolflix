@@ -33,8 +33,13 @@ main {
   height: 100%;
 }
 
-.container .row h1 {
-  color: white;
+.custom-container {
+  width: 90%;
+  margin: 0 auto;
+
+  .row h1 {
+    color: white;
+  }
 }
 
 .card {

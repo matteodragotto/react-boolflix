@@ -9,8 +9,8 @@ const HomePage = () => {
   const { searchResults, fetchVideo, videoId, searchData } = useGlobalContext()
 
   const opts = {
-    height: '720',
-    width: '1280',
+    height: '900',
+    width: '1600',
     playerVars: {
 
       autoplay: 0,
@@ -28,8 +28,8 @@ const HomePage = () => {
   }, [searchResults, fetchVideo, searchData]);
 
   return (
-    <div className="container">
-      <div className="container video">
+    <div className="custom-container">
+      <div className="video text-center mb-3">
         <YouTube
           videoId={videoId}
           opts={opts}

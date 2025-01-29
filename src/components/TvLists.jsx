@@ -12,7 +12,7 @@ const MovieLists = () => {
 
   const { searchResults } = useGlobalContext()
 
-  const mediaType = searchResults.map(media => media.media_type === 'tv' ? <SwiperSlide key={media.id}><TvCards media={media} /></SwiperSlide> : null)
+  const mediaType = searchResults.filter(media => media.media_type === 'tv').map(media => (<SwiperSlide key={media.id}><TvCards media={media} /></SwiperSlide>))
 
   return (
     <>
