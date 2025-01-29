@@ -14,9 +14,6 @@ const MovieLists = () => {
 
   const mediaType = searchResults.map(media => media.media_type === 'movie' ? <SwiperSlide key={media.id}><MovieCards key={media.id} media={media} /></SwiperSlide> : null)
 
-  console.log(mediaType);
-
-
   return (
     <>
       <Swiper

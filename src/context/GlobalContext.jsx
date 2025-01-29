@@ -15,19 +15,17 @@ const GlobalProvider = ({ children }) => {
 
   const [searchResults, setSearchResults] = useState([])
   const [searchData, setSearchData] = useState('')
-  // const [originCountry, setOriginCountry] = useState([])
+  const [videoId, setVideoId] = useState('')
 
 
   const handlerSearch = (e) => {
     setSearchData(e.target.value)
   }
 
-
   const fetchMedia = () => {
     axios.get(`${baseApiUrl}?api_key=${apiKey}&query=${searchData}`)
       .then(res => {
         setSearchResults(res.data.results)
-
       })
   }
 
@@ -35,6 +33,14 @@ const GlobalProvider = ({ children }) => {
     axios.get(`${mediaDetailsApiUrl}trending/all/week?api_key=${apiKey}`)
       .then(res => {
         setSearchResults(res.data.results)
+      })
+  }
+
+  const fetchVideo = (id) => {
+    axios.get(`${mediaDetailsApiUrl}movie/${id}/videos?api_key=${apiKey}`)
+      .then(res => {
+        setVideoId(res.data.results[0].key)
+        console.log(res.data.results[0].key);
       })
   }
 
@@ -72,7 +78,9 @@ const GlobalProvider = ({ children }) => {
     flagLanguage,
     mediaDetailsApiUrl,
     apiKey,
-    fetchPopularMedia
+    fetchPopularMedia,
+    fetchVideo,
+    videoId
   }
 
   return (
