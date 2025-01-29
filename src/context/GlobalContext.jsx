@@ -15,6 +15,7 @@ const GlobalProvider = ({ children }) => {
 
   const [searchResults, setSearchResults] = useState([])
   const [searchData, setSearchData] = useState('')
+  const [mediaCast, setMediaCast] = useState([])
   // const [originCountry, setOriginCountry] = useState([])
 
 
@@ -26,11 +27,21 @@ const GlobalProvider = ({ children }) => {
   const fetchMovies = () => {
     axios.get(`${baseApiUrl}?api_key=${apiKey}&query=${searchData}`)
       .then(res => {
+        console.log(res.data.results);
+
         // axios.all([axios.get(detils film 1), axios.get(detils film 1)]).then()
         // const pendingFetches = res.data.results.map(movie => axios.get());
         setSearchResults(res.data.results)
       })
   }
+
+  const fetchCast = (id, mediaType) => {
+    axios.get(`${mediaDetailsApiUrl}${mediaType}/${id}/credits?api_key=${apiKey}`)
+      .then(res => {
+        setMediaCast(res.data.cast.slice(0, 5))
+      })
+  }
+
 
   // const fetchCountry = (id, mediaType) => {
   //   axios.get(`${mediaDetailsApiUrl}${mediaType}/${id}?api_key=${apiKey}`)
@@ -66,8 +77,19 @@ const GlobalProvider = ({ children }) => {
     return language
   }
 
+  const value = {
+    searchData,
+    handlerSearch,
+    searchResults,
+    fetchMovies,
+    ratingStars,
+    flagLanguage,
+    fetchCast,
+    mediaCast
+  }
+
   return (
-    <GlobalContext.Provider value={{ searchData, handlerSearch, searchResults, fetchMovies, ratingStars, flagLanguage }} >
+    <GlobalContext.Provider value={value} >
       {children}
     </GlobalContext.Provider >
   )

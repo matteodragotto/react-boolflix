@@ -2,7 +2,7 @@ import { useGlobalContext } from "../context/GlobalContext"
 
 const MovieCards = ({ media }) => {
 
-  const { ratingStars, flagLanguage } = useGlobalContext()
+  const { ratingStars, flagLanguage, fetchCast, mediaCast } = useGlobalContext()
 
   const isNameIdentical = media.name === media.original_name
   const mediaRating = Math.floor(media.vote_average / 2)
@@ -29,7 +29,9 @@ const MovieCards = ({ media }) => {
           </p>
           <p className="card-text">Lingua: <img src={`https://flagsapi.com/${flagLanguage(media.original_language).toUpperCase()}/flat/64.png`} /></p>
           <p className="card-text">Rating: {ratingStars(mediaRating)}</p>
-          <p className="card-text">Overview: {media.overview}</p>
+          <p className="card-text overview">Overview: {media.overview}</p>
+          <a onClick={() => fetchCast(media.id, media.media_type)}>Mostra attori</a>
+          <p className="card-text">{mediaCast.map(actor => <span>{actor.name}  </span>)}</p>
         </div>
       </div>
     </div>

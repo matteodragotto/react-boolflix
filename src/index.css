@@ -4,6 +4,27 @@
   box-sizing: border-box;
 }
 
+body {
+  background-color: #434343;
+}
+
+header {
+  background-color: black;
+  padding: 40px;
+
+  h1 {
+    color: red;
+  }
+}
+
+main {
+  height: 100%;
+}
+
+.container .row h1 {
+  color: white;
+}
+
 .card {
   position: relative;
   height: 600px;
@@ -27,6 +48,11 @@
   flex-direction: column;
   justify-content: center;
   align-items: center;
+
+  .overview {
+    overflow: scroll;
+    max-height: 250px;
+  }
 
   &:hover {
     opacity: 0.8;

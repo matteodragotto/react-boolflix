@@ -3,7 +3,7 @@ import TvLists from "../components/TvLists"
 
 const HomePage = () => {
   return (
-    <div className="container my-5">
+    <div className="container">
       <div className="row">
         <h1>Movies</h1>
         <MovieLists />
