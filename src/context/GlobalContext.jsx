@@ -48,7 +48,7 @@ const GlobalProvider = ({ children }) => {
     const stars = []
     for (let i = 1; i <= 5; i++) {
       if (i <= rating) {
-        stars.push(<i key={i} className="fa-solid fa-star"></i>)
+        stars.push(<i key={i} className="fa-solid fa-star" style={{ color: "#ff0000", }}></i>)
       } else {
         stars.push(<i key={i} className="fa-regular fa-star"></i>)
       }

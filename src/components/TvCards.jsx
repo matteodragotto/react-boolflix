@@ -23,12 +23,13 @@ const MovieCards = ({ media }) => {
     axios.get(`${mediaDetailsApiUrl}${media.media_type}/${media.id}/credits?api_key=${apiKey}`)
       .then(res => {
         setTvCast(res.data.cast.slice(0, 5))
+        console.log(res.data.cast.slice(0, 5));
       })
   }
 
 
   return (
-    <div className="col-4 p-3">
+    <div className="p-3">
       <div className="card">
         <img className="img-fluid" src={imgUrl()} alt={media.name} />
         <div className="card-body">
@@ -41,8 +42,11 @@ const MovieCards = ({ media }) => {
           <p className="card-text">Lingua: <img src={`https://flagsapi.com/${flagLanguage(media.original_language).toUpperCase()}/flat/64.png`} /></p>
           <p className="card-text">Rating: {ratingStars(mediaRating)}</p>
           <p className="card-text overview">Overview: {media.overview}</p>
-          <a onClick={() => fetchCast(media.id, media.media_type)}>Mostra attori</a>
-          <p className="card-text">{tvCast.map(actor => <span key={actor.id}>{actor.name}  </span>)}</p>
+          <a onClick={() => fetchCast(media.id, media.media_type)}>Mostra cast</a>
+          <p className="card-text"> <ul className="list-group">
+            {tvCast.map(actor => <li key={actor.id}><img src={`https://image.tmdb.org/t/p/w342${actor.profile_path}`} alt={actor.name} /></li>)}
+          </ul>
+          </p>
         </div>
       </div>
     </div>
