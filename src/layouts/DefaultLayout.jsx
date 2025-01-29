@@ -5,7 +5,9 @@ export const DefaultLayout = () => {
   return (
     <>
       <header className="d-flex justify-content-between">
-        <h1>BoolFlix</h1>
+        <div className="logo">
+          <img src="../public/img/logoBoolFlix.png" alt="BoolFlix" />
+        </div>
         <div className="div">
           <SearchBar />
         </div>
