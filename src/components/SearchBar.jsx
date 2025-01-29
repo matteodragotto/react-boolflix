@@ -4,11 +4,16 @@ import { useGlobalContext } from "../context/GlobalContext"
 
 const SearchBar = () => {
 
-  const { searchData, handlerSearch, fetchMovies } = useGlobalContext()
+  const { searchData, handlerSearch, fetchMedia, fetchPopularMedia } = useGlobalContext()
 
   useEffect(() => {
-    fetchMovies()
-  }, [searchData])
+    if (searchData == '') {
+      fetchPopularMedia();
+    } else {
+      fetchMedia();
+    }
+  }, [searchData]);
+
 
   return (
     <div>

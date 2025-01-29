@@ -41,10 +41,10 @@ const MovieCards = ({ media }) => {
           <p className="card-text">Rating: {ratingStars(mediaRating)}</p>
           <p className="card-text overview">Overview: {media.overview}</p>
           <a onClick={() => fetchCast()}>Mostra cast</a>
-          <p className="card-text"> <ul className="list-group">
+          <ul className="list-group">
             {movieCast.map(actor => <li key={actor.id}><img src={`https://image.tmdb.org/t/p/w342${actor.profile_path}`} alt={actor.name} /></li>)}
           </ul>
-          </p>
+
         </div>
       </div>
     </div>

@@ -14,10 +14,13 @@ const MovieLists = () => {
 
   const mediaType = searchResults.map(media => media.media_type === 'movie' ? <SwiperSlide key={media.id}><MovieCards key={media.id} media={media} /></SwiperSlide> : null)
 
+  console.log(mediaType);
+
+
   return (
     <>
       <Swiper
-        slidesPerView={3}
+        slidesPerView={4}
         spaceBetween={15}
         freeMode={true}
         autoplay={{

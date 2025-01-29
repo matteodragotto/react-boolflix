@@ -1,5 +1,5 @@
 import axios from "axios"
-import { createContext, useContext, useState } from "react"
+import { createContext, useContext, useState, useEffect } from "react"
 
 
 const GlobalContext = createContext()
@@ -23,26 +23,20 @@ const GlobalProvider = ({ children }) => {
   }
 
 
-  const fetchMovies = () => {
+  const fetchMedia = () => {
     axios.get(`${baseApiUrl}?api_key=${apiKey}&query=${searchData}`)
       .then(res => {
-        console.log(res.data.results);
-
-        // axios.all([axios.get(detils film 1), axios.get(detils film 1)]).then()
-        // const pendingFetches = res.data.results.map(movie => axios.get());
         setSearchResults(res.data.results)
+
       })
   }
 
-
-  // const fetchCountry = (id, mediaType) => {
-  //   axios.get(`${mediaDetailsApiUrl}${mediaType}/${id}?api_key=${apiKey}`)
-  //     .then(res => {
-  //       setOriginCountry(res.data.origin_country)
-  //       console.log(originCountry);
-  //     })
-  // }
-
+  const fetchPopularMedia = () => {
+    axios.get(`${mediaDetailsApiUrl}trending/all/week?api_key=${apiKey}`)
+      .then(res => {
+        setSearchResults(res.data.results)
+      })
+  }
 
   const ratingStars = (rating) => {
     const stars = []
@@ -73,11 +67,12 @@ const GlobalProvider = ({ children }) => {
     searchData,
     handlerSearch,
     searchResults,
-    fetchMovies,
+    fetchMedia,
     ratingStars,
     flagLanguage,
     mediaDetailsApiUrl,
-    apiKey
+    apiKey,
+    fetchPopularMedia
   }
 
   return (

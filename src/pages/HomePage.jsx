@@ -6,7 +6,7 @@ const HomePage = () => {
 
   const { searchResults } = useGlobalContext()
   return (
-    <div className="container x-5">
+    <div className="container">
       <div className="row">
         <h1>{searchResults.length === 0 ? '' : 'Movies'}</h1>
         <MovieLists />
