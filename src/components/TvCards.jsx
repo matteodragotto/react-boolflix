@@ -31,7 +31,7 @@ const MovieCards = ({ media }) => {
           <p className="card-text">Rating: {ratingStars(mediaRating)}</p>
           <p className="card-text overview">Overview: {media.overview}</p>
           <a onClick={() => fetchCast(media.id, media.media_type)}>Mostra attori</a>
-          <p className="card-text">{mediaCast.map(actor => <span>{actor.name}  </span>)}</p>
+          <p className="card-text">{mediaCast.map(actor => <span key={actor.id}>{actor.name}  </span>)}</p>
         </div>
       </div>
     </div>

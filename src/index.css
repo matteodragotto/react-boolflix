@@ -54,6 +54,10 @@ main {
     max-height: 250px;
   }
 
+  p img {
+    max-width: 60px;
+  }
+
   &:hover {
     opacity: 0.8;
     cursor: pointer;
