@@ -1,8 +1,11 @@
 import { useGlobalContext } from "../context/GlobalContext"
+import { useState } from "react"
+import axios from "axios"
 
 const MovieCards = ({ media }) => {
 
-  const { ratingStars, flagLanguage, fetchCast, mediaCast } = useGlobalContext()
+  const { ratingStars, flagLanguage, mediaDetailsApiUrl, apiKey } = useGlobalContext()
+  const [tvCast, setTvCast] = useState([])
 
   const isNameIdentical = media.name === media.original_name
   const mediaRating = Math.floor(media.vote_average / 2)
@@ -15,6 +18,14 @@ const MovieCards = ({ media }) => {
       return `https://image.tmdb.org/t/p/w342${media.poster_path}`
     }
   }
+
+  const fetchCast = () => {
+    axios.get(`${mediaDetailsApiUrl}${media.media_type}/${media.id}/credits?api_key=${apiKey}`)
+      .then(res => {
+        setTvCast(res.data.cast.slice(0, 5))
+      })
+  }
+
 
   return (
     <div className="col-4 p-3">
@@ -31,7 +42,7 @@ const MovieCards = ({ media }) => {
           <p className="card-text">Rating: {ratingStars(mediaRating)}</p>
           <p className="card-text overview">Overview: {media.overview}</p>
           <a onClick={() => fetchCast(media.id, media.media_type)}>Mostra attori</a>
-          <p className="card-text">{mediaCast.map(actor => <span key={actor.id}>{actor.name}  </span>)}</p>
+          <p className="card-text">{tvCast.map(actor => <span key={actor.id}>{actor.name}  </span>)}</p>
         </div>
       </div>
     </div>

@@ -15,7 +15,6 @@ const GlobalProvider = ({ children }) => {
 
   const [searchResults, setSearchResults] = useState([])
   const [searchData, setSearchData] = useState('')
-  const [mediaCast, setMediaCast] = useState([])
   // const [originCountry, setOriginCountry] = useState([])
 
 
@@ -32,13 +31,6 @@ const GlobalProvider = ({ children }) => {
         // axios.all([axios.get(detils film 1), axios.get(detils film 1)]).then()
         // const pendingFetches = res.data.results.map(movie => axios.get());
         setSearchResults(res.data.results)
-      })
-  }
-
-  const fetchCast = (id, mediaType) => {
-    axios.get(`${mediaDetailsApiUrl}${mediaType}/${id}/credits?api_key=${apiKey}`)
-      .then(res => {
-        setMediaCast(res.data.cast.slice(0, 5))
       })
   }
 
@@ -84,8 +76,8 @@ const GlobalProvider = ({ children }) => {
     fetchMovies,
     ratingStars,
     flagLanguage,
-    fetchCast,
-    mediaCast
+    mediaDetailsApiUrl,
+    apiKey
   }
 
   return (
