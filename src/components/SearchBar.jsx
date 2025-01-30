@@ -18,6 +18,7 @@ const SearchBar = () => {
   return (
     <div>
       <input
+        className="m-1"
         type="text"
         placeholder="Cerca..."
         value={searchData}

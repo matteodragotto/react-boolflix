@@ -8,7 +8,7 @@ const MovieCards = ({ media }) => {
   const [movieCast, setMovieCast] = useState([])
 
   const isNameIdentical = media.title === media.original_title
-  const mediaRating = Math.floor(media.vote_average / 2)
+  const mediaRating = Math.ceil(media.vote_average / 2)
   const imagePlaceholder = 'https://placehold.co/342x600'
 
   const imgUrl = () => {

@@ -16,11 +16,13 @@ const GlobalProvider = ({ children }) => {
   const [searchResults, setSearchResults] = useState([])
   const [searchData, setSearchData] = useState('')
   const [videoId, setVideoId] = useState('')
+  const [genresData, setGenresData] = useState([])
 
 
   const handlerSearch = (e) => {
     setSearchData(e.target.value)
   }
+
 
   const fetchMedia = () => {
     axios.get(`${baseApiUrl}?api_key=${apiKey}&query=${searchData}`)
@@ -44,6 +46,13 @@ const GlobalProvider = ({ children }) => {
       })
   }
 
+  const fetchGenres = () => {
+    axios.get(`${mediaDetailsApiUrl}genre/movie/list?api_key=${apiKey}`)
+      .then(res => {
+        setGenresData(res.data.genres)
+      })
+  }
+
   const ratingStars = (rating) => {
     const stars = []
     for (let i = 1; i <= 5; i++) {
@@ -62,6 +71,8 @@ const GlobalProvider = ({ children }) => {
       language = 'US'
     } else if (original_language === 'ja') {
       language = 'JP'
+    } else if (original_language === 'ko') {
+      language = 'KR'
     } else {
       language = original_language
     }
@@ -80,7 +91,10 @@ const GlobalProvider = ({ children }) => {
     apiKey,
     fetchPopularMedia,
     fetchVideo,
-    videoId
+    videoId,
+    fetchGenres,
+    genresData,
+    setSearchResults
   }
 
   return (

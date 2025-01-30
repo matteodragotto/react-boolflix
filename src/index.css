@@ -17,7 +17,8 @@ header {
     color: red;
   }
 
-  input {
+  input,
+  select {
     border-radius: 20px;
     border: none;
     padding: 10px 20px;
